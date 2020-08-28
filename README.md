@@ -7,6 +7,8 @@ why this project? I realized in the few go projects I've done, that there was no
 
 ## How to install
 
+if you don't have the Golang compiler please download it first [install Golang Compiler](https://golang.org)
+
     git clone https://github.com/ClementBolin/go-projectGenerator
     cd go-projectGenerator
     chmod +x install.sh
