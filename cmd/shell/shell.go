@@ -61,5 +61,8 @@ func (shell Shell) initMakefile(cmd []string) {
 	}
 	fmt.Println("Start init Makefile");
 	make.Init(cmd[1])
-	make.DebugEnv();
+	if err := make.Generation(); err != nil {
+		fmt.Println(err);
+		return
+	}
 }
