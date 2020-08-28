@@ -1,8 +1,32 @@
 # Go-projectGenerator
 
+## Introduction
+
+why this project? I realized in the few go projects I've done, that there was no quick way to generate a standard project in Golang. So I created a go-projectGenerator to answer this problem, go-projectGenerator will generate a folder with a ```go.mod``` if you want, a ```Makefile```, a cmd folder where it will find your ```main.go``` and a pkg folder. So you will have a project that respects a good architecture to start coding in the best conditions. 
+
+
+## How to install
+
+    git clone https://github.com/ClementBolin/go-projectGenerator
+    cd go-projectGenerator
+    chmod +x install.sh
+    ./install.sh
+
+if ```install.sh``` failed you follow next instruction :
+
+#### MacOs
+
+    make build
+    sudo cp ./bin/go-projectGenerator /usr/local/bin
+
+#### Linux
+
+    make build
+    sudo cp ./bin/go-projectGenerator /usr/bin
+
 ## How to use
 
-The goal to ```go-projectGenerator``` is to setup your golang project.
+for run go-generator use ```go-generator init <name of your project>```
 
 ![](Assets/example.png)
 
@@ -30,23 +54,3 @@ Makefile Rules
    > make clean (clean Project)
    > make clean-cache-mod (clean cahe in /Users/clementbolin/Epitech/Tek2/Go/go-projectGenerator/vendor:/Users/clementbolin/Epitech/Tek2/Go/go-projectGenerator/pkg/mod)
 ```
-
-## How to install
-
-    git clone https://github.com/ClementBolin/go-projectGenerator
-    cd go-projectGenerator
-    chmod +x install.sh
-    ./install.sh
-
-if ```install.sh``` failed you follow next instruction :
-
-#### MacOs
-
-    make build
-    sudo cp ./bin/go-projectGenerator /usr/local/bin
-
-#### Linux
-
-    make build
-    sudo cp ./bin/go-projectGenerator /usr/bin
-
