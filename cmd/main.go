@@ -12,7 +12,7 @@ func main() {
 	shell.Init();
 	for {
 		shell.ReadInput();
-		if (shell.CheckInput() == true) { break } 
+		shell.CheckInput()
 	}
 	fmt.Println("Leave go-shell !");
 }
