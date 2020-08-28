@@ -4,23 +4,15 @@ import (
 	"os"
 	"fmt"
 	"bufio"
-	"strings"
 
 	"github.com/ClementBolin/go-shell/pkg/makefile"
+	"github.com/ClementBolin/go-shell/pkg/env"
 )
 
 // Shell Structure
 type Shell struct {
 	input string;
 	cmd []string;
-}
-
-// Init your Shell Structure
-func (shell *Shell) Init() {
-	shell.input = "";
-	shell.cmd = append(shell.cmd, "init");
-	shell.cmd = append(shell.cmd, "clean");
-	shell.cmd = append(shell.cmd, "Quit");
 }
 
 // ReadInput os.Stdin Line and change value Shell.input
@@ -33,16 +25,12 @@ func (shell *Shell) ReadInput() {
 
 // CheckInput : CheckInput Value
 // Return : return false if input == Quit or false in other case
-func (shell Shell) CheckInput() {
-	cmdArray := strings.Split(shell.input, " ");
-	for _, cmd := range shell.cmd {
-		if (cmdArray[0] == cmd) {
-			shell.leaveShell();
-			shell.initMakefile(cmdArray);
-			return
-		}
+func (shell Shell) CheckInput(cmdArray []string) {
+	if (cmdArray[1] == "init") {
+		shell.initProject(cmdArray);
+		return
 	}
-	fmt.Println(cmdArray[0], ": invalid command");
+	fmt.Println(cmdArray[1], ": invalid command");
 }
 
 func (shell Shell) leaveShell() {
@@ -52,17 +40,22 @@ func (shell Shell) leaveShell() {
 	}
 }
 
-func (shell Shell) initMakefile(cmd []string) {
+func (shell Shell) initProject(cmd []string) {
 	var make makefile.Makefile;
 
-	if (len(cmd) != 2) {
+	if (len(cmd) != 3) {
 		fmt.Print("init Usage:\n\n<name> this is name of your project\n\nExample:\ninit go-shell\n");
 		return
 	}
-	fmt.Println("Start init Makefile");
-	make.Init(cmd[1])
-	if err := make.Generation(); err != nil {
+	fmt.Println("Start init Project:");
+	var env env.Env;
+	env.Init(cmd[2])
+	if err := env.SetupWorkdir(); err != nil {
+		fmt.Printf("Failed to Setup project ❌\nDetail Error: %s", err)
+	}
+	if err := make.Generation(env.ProjectName); err != nil {
 		fmt.Println(err);
 		return
 	}
+	fmt.Println("Project setup ✅")
 }

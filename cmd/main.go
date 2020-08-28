@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"fmt"
 
 	"github.com/ClementBolin/go-shell/cmd/shell"
@@ -9,10 +10,9 @@ import (
 func main() {
 	var shell shell.Shell;
 
-	shell.Init();
-	for {
-		shell.ReadInput();
-		shell.CheckInput()
+	if (len(os.Args) != 3) {
+		fmt.Print("init Usage:\n\n<name> this is name of your project\n\nExample:\ninit go-shell\n")
+		return
 	}
-	fmt.Println("Leave go-shell !");
+	shell.CheckInput(os.Args);
 }

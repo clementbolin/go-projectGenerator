@@ -2,7 +2,6 @@ package makefile
 
 import (
 	"os"
-	"fmt"
 	"errors"
 )
 
@@ -16,27 +15,10 @@ type Makefile struct {
 	projectName string
 }
 
-// Init : inti Makefile Structure
-func (make *Makefile) Init(projectName string) {
-	make.GOPATH = os.Getenv("GOPATH");
-	make.GOBIN = os.Getenv("GOBIN");
-	make.GOBASE = os.Getenv("PWD");
-	make.projectName = projectName;
-	// Conctat vendor to GOPATH
-	make.GOPATH = make.GOPATH + "/vendor:" + make.GOBASE;
-}
-
-// DebugEnv : Print go enc Varible
-func (make Makefile) DebugEnv() {
-	fmt.Println("GOPATH: ", make.GOPATH);
-	fmt.Println("GOBIN: ", make.GOBIN);
-	fmt.Println("GOBASE: ", make.GOBASE);
-}
-
 // Generation : Generate Makfile
-func (make Makefile) Generation() error {
-	if _, err := os.Stat("./Makefile"); err == nil { return errors.New("Makefile exist") } // check file exist
-	fd, err := os.Create("./Makefile"); // Create file
+func (make Makefile) Generation(path string) error {
+	if _, err := os.Stat("./" + path + "/Makefile"); err == nil { return errors.New("Makefile exist") } // check file exist
+	fd, err := os.Create("./" + path + "/Makefile"); // Create file
 	if (err != nil) { return err }
 	defer fd.Close();
 
