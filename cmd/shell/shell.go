@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"bufio"
 
-	"github.com/ClementBolin/go-shell/pkg/makefile"
-	"github.com/ClementBolin/go-shell/pkg/env"
+	"github.com/ClementBolin/go-projectGenerator/pkg/makefile"
+	"github.com/ClementBolin/go-projectGenerator/pkg/env"
 )
 
 // Shell Structure

@@ -4,7 +4,7 @@ import (
 	"os"
 	"fmt"
 
-	"github.com/ClementBolin/go-shell/cmd/shell"
+	"github.com/ClementBolin/go-projectGenerator/cmd/shell"
 )
 
 func main() {
