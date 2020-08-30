@@ -94,7 +94,7 @@ func (env Env) gitInit() error {
 	// Create .gitignore
 	fd, err := os.Create("./.gitignore")
 	if (err != nil) { return err }
-	if _, err := fd.WriteString("bin"); err != nil { return err }
+	if _, err := fd.WriteString("bin\nvendor"); err != nil { return err }
 	// Add files
 	addI := exec.Command("git", "add .*")
 	addI.Dir = "./" + env.ProjectName + "/"
