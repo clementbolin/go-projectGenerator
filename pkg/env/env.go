@@ -49,6 +49,7 @@ func (env Env) createMain() error {
 	fd, err := os.Create("./" + env.ProjectName + "/cmd/main.go");
 	if (err != nil) { return err }
 	var content string = `package main
+
 import (
 	"fmt"
 )
