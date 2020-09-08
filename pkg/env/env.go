@@ -89,6 +89,14 @@ func (env Env) createGoMod() error {
 
 // Init git
 func (env Env) gitInit() error {
+	scan := bufio.NewScanner(os.Stdin);
+	for {
+		fmt.Print("   > Init git [y/n]: ")
+		scan.Scan()
+		if (scan.Text() == "y") { break }
+		if (scan.Text() == "n") { return nil }
+	}
+
 	git := exec.Command("git", "init");
 	git.Dir = "./" + env.ProjectName + "/"
 	if err := git.Run(); err != nil { return err }
