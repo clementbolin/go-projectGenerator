@@ -103,7 +103,43 @@ func (env Env) gitInit() error {
 	// Create .gitignore
 	fd, err := os.Create("./" + env.ProjectName + "/.gitignore")
 	if (err != nil) { return err }
-	if _, err := fd.WriteString("bin\nvendor"); err != nil { return err }
+	if _, err := fd.WriteString(
+`bin
+vendor
+
+### Go ###
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+ftw*
+*.so
+*.dylib
+
+# Test binary, build with "go test -c"
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Misc
+.DS_Store
+gcal/client_secret.json
+gspreadsheets/client_secret.json
+profile.pdf
+report.*
+.vscode
+
+# All things node
+node_modules/
+package-lock.json
+
+#intellij idea
+.idea/
+
+dist/*
+bin/
+`); err != nil { return err }
 	// Add files
 	addI := exec.Command("git", "add .*")
 	addI.Dir = "./" + env.ProjectName + "/"
