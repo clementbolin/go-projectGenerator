@@ -4,8 +4,8 @@ if [[ $EUID -ne 0 ]]; then
 else
     echo "Installing go-ProjectGenerator..."
 fi
-make build
-sudo cp ./bin/go-projectGenerator /usr/local/bin
-make clean
-make clean-cache-mod
+go build -o go-ProjectGenerator
+sudo cp ./go-projectGenerator /usr/local/bin
+rm go-ProjectGenerator
+go clean --modcache
 echo "go-ProjectGenerator install"

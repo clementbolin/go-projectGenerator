@@ -46,7 +46,7 @@ func (env Env) SetupWorkdir() error {
 
 // Create main.go in ./(ProjectName)/cmd/main.go
 func (env Env) createMain() error {
-	fd, err := os.Create("./" + env.ProjectName + "/cmd/main.go");
+	fd, err := os.Create("./" + env.ProjectName + "/main.go");
 	if (err != nil) { return err }
 	var content string = `package main
 
@@ -57,7 +57,7 @@ import (
 func main() {
 	fmt.Println("Hello World");
 }
-	`
+`
 	if _, err := fd.WriteString(content); err != nil { return err }
 	fmt.Printf("   > ./%s/cmd/main.go create ✅\n", env.ProjectName);
 	return nil
@@ -139,6 +139,7 @@ package-lock.json
 
 dist/*
 bin/
+########
 `); err != nil { return err }
 	// Add files
 	addI := exec.Command("git", "add .*")

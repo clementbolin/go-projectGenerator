@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"bufio"
 
-	"github.com/ClementBolin/go-projectGenerator/pkg/makefile"
 	"github.com/ClementBolin/go-projectGenerator/pkg/env"
 )
 
@@ -41,8 +40,6 @@ func (shell Shell) leaveShell() {
 }
 
 func (shell Shell) initProject(cmd []string) {
-	var make makefile.Makefile;
-
 	if (len(cmd) != 3) {
 		fmt.Print("init Usage:\n\n<name> this is name of your project\n\nExample:\ninit go-shell\n");
 		return
@@ -52,10 +49,6 @@ func (shell Shell) initProject(cmd []string) {
 	env.Init(cmd[2])
 	if err := env.SetupWorkdir(); err != nil {
 		fmt.Printf("Failed to Setup project ❌\nDetail Error: %s", err)
-	}
-	if err := make.Generation(env.ProjectName); err != nil {
-		fmt.Println(err);
-		return
 	}
 	fmt.Println("Project setup ✅")
 }
